@@ -1,6 +1,6 @@
 ﻿
 System.Console.WriteLine("Введите число");
-String stringvalue = Console.ReadLine();
+String stringvalue = Console.ReadLine()?? "";
 System.Console.WriteLine(stringvalue);
 int value=Convert.ToInt32(stringvalue);
 
