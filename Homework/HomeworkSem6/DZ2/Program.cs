@@ -2,23 +2,33 @@
 // пересечения двух прямых, заданных уравнениями y = k1 *
 // x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются
 // пользователем.
-int[] IntMassPromt(string message)
+double[] IntMassPromt(string message)
 {
     System.Console.WriteLine(message);
     string[] strings = Console.ReadLine().Split();
-    int[] nums = new int[strings.Length];
+    double[] nums = new double[strings.Length];
     for (int i = 0; i < strings.Length; i++)
-        nums[i] = Convert.ToInt32(strings[i]);
+        nums[i] = Convert.ToDouble(strings[i]);
     return nums;
 }
-double[] Peresechenie(int[] paramOne,int[] paramTwo)
+double[] Peresechenie(double[] paramOne,double[] paramTwo)
 {
     double[] result=new double[2];
-    result[0]=(paramTwo[1]-paramOne[1])/(paramOne[0]-paramTwo[0]);
-    result[1]=paramOne[0]*result[0]+paramOne[1];
+    result[0]=(paramTwo[0]-paramOne[0])/(paramOne[1]-paramTwo[1]);
+    result[1]=paramOne[1]*result[0]+paramOne[0];
 
     return result;
 }
+void PrintArray(double[] numericArray)
+{
+    for (int i = 0; i < numericArray.Length; i++)
+    {
+        System.Console.Write($"{numericArray[i]} ");
+    }
+    System.Console.WriteLine();
+}
 //Script text
-int[] arrayOne = IntMassPromt("Введите первое коэффициенты уравнения");
-int[] arrayTwo = IntMassPromt("Введите первое коэффициенты уравнения");
+double[] arrayOne = IntMassPromt("Введите b k коэффициенты первого уравнения через пробел >");
+double[] arrayTwo = IntMassPromt("Введите b k коэффициенты второго уравнения через пробел >");
+double[] result = Peresechenie(arrayOne,arrayTwo);
+PrintArray(result);
