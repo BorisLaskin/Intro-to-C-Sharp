@@ -2,7 +2,7 @@
 // пересечения двух прямых, заданных уравнениями y = k1 *
 // x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются
 // пользователем.
-double[] IntMassPromt(string message)
+double[] DoubleMassPromt(string message)
 {
     System.Console.WriteLine(message);
     string[] strings = Console.ReadLine().Split();
@@ -28,7 +28,7 @@ void PrintArray(double[] numericArray)
     System.Console.WriteLine();
 }
 //Script text
-double[] arrayOne = IntMassPromt("Введите b k коэффициенты первого уравнения через пробел >");
-double[] arrayTwo = IntMassPromt("Введите b k коэффициенты второго уравнения через пробел >");
+double[] arrayOne = DoubleMassPromt("Введите b k коэффициенты первого уравнения через пробел >");
+double[] arrayTwo = DoubleMassPromt("Введите b k коэффициенты второго уравнения через пробел >");
 double[] result = Peresechenie(arrayOne,arrayTwo);
 PrintArray(result);
