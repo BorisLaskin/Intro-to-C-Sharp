@@ -7,7 +7,8 @@ double[] DoubleMassPromt(string message)
     while (true)
     {
         System.Console.WriteLine(message);
-        string[] strings = Console.ReadLine().Split();
+        string tempString = Console.ReadLine() ?? String.Empty;
+        string[] strings = tempString.Split();
         if (strings.Length == 2)
         {
             double[] nums = new double[strings.Length];
