@@ -1,7 +1,15 @@
-﻿// Задайте двумерный массив. Найдите сумму элементов
-// главной диагонали.
+﻿// Задайте двумерный массив размером m×n,
+// заполненный случайными вещественными числами.
 
-int[] IntMassInputAndPromt(string message)
+// m = 3, n = 4.
+// 0,5 7 -2 -0,2
+// 1 -3,3 8 -9,9
+// 8 7,8 -7,1 9
+
+// Задайте двумерный массив размером m×n,
+// заполненный случайными целыми числами.
+
+int[] InputIntMassAndPromt(string message)
 {
     while (true)
     {
@@ -18,46 +26,36 @@ int[] IntMassInputAndPromt(string message)
         System.Console.WriteLine("Вы ввели не 2 числа.Попробуй снова.");
     }
 }
-int[,] CreateRandomArray(int[] arraySize, int minValue = -10, int maxValue = 10)
+double[,] CreateRandomArray(int[] arraySize, int minValue = -10, int maxValue = 10)
 {
-    int[,] numericArray = new int[arraySize[0], arraySize[1]];
+    double[,] numericArray = new double[arraySize[0], arraySize[1]];
     Random rnd = new Random();
     for (int i = 0; i < arraySize[0]; i++)
     {
         for (int j = 0; j < arraySize[1]; j++)
         {
-            numericArray[i, j] = rnd.Next(minValue, maxValue + 1);
+            numericArray[i, j] = rnd.NextDouble()*(maxValue-minValue)+minValue;
         }
     }
     return numericArray;
 }
-void PrintMatrixArray(int[,] array)
+void PrintMatrixArray(double[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            System.Console.Write($"{array[i, j]} ");
+            System.Console.Write($"{Math.Round(array[i, j], 2)} ");
         }
         System.Console.WriteLine();
     }
 }
-int SumDiag(int[,] array)
-{
-    int sum = 0;
-    for (int i = 0; i < array.GetLength(0) && i < array.GetLength(1); i++)
-    {
-        sum += array[i, i];
-    }
-    return sum;
-}
 // Script text
-int[] sizeArr = IntMassInputAndPromt("Введите размерность массива");
+int[] sizeArr = InputIntMassAndPromt("Введите размерность массива (два числа, через пробел)");
 if (sizeArr[0] > 0 && sizeArr[1] > 0)
 {
-    int[,] array = CreateRandomArray(sizeArr);
+    double[,] array = CreateRandomArray(sizeArr);
     PrintMatrixArray(array);
-    System.Console.WriteLine($"Сумма элементов главной диагонали {SumDiag(array)}");
 }
 else
 {

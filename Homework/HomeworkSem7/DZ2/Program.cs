@@ -1,5 +1,15 @@
-﻿// Задайте двумерный массив. Найдите сумму элементов
-// главной диагонали.
+﻿// Напишите программу, которая на вход
+// принимает позиции элемента в двумерном массиве, и
+// возвращает значение этого элемента или же указание,
+// что такого элемента нет.
+
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+
+// 1, 7 -> такого числа в массиве нет
+// 1, 2 -> 4
 
 int[] IntMassInputAndPromt(string message)
 {
@@ -42,24 +52,21 @@ void PrintMatrixArray(int[,] array)
         System.Console.WriteLine();
     }
 }
-int SumDiag(int[,] array)
+void PrintArrayPosition(int[,] array, int[] pos)
 {
-    int sum = 0;
-    for (int i = 0; i < array.GetLength(0) && i < array.GetLength(1); i++)
+    if (--pos[0] < array.GetLength(0) && --pos[1] < array.GetLength(1))
     {
-        sum += array[i, i];
+        System.Console.WriteLine($"Вы запросили : {array[pos[0], pos[1]]}");
     }
-    return sum;
+    else
+    {
+        System.Console.WriteLine("такого числа в массиве нет");
+    }
+
 }
 // Script text
-int[] sizeArr = IntMassInputAndPromt("Введите размерность массива");
-if (sizeArr[0] > 0 && sizeArr[1] > 0)
-{
-    int[,] array = CreateRandomArray(sizeArr);
-    PrintMatrixArray(array);
-    System.Console.WriteLine($"Сумма элементов главной диагонали {SumDiag(array)}");
-}
-else
-{
-    System.Console.WriteLine("bad size");
-}
+
+int[,] array = CreateRandomArray(new int[2] { 3, 4 });
+PrintMatrixArray(array);
+int[] position = IntMassInputAndPromt("Введите позицию искомого элемента (два числа, через пробел) >");
+PrintArrayPosition(array, position);
